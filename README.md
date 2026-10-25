@@ -1,2 +1,7 @@
-# for-rumaysa
-A special password-locked love note for Rumaysa
+# For Rumaysa
+
+A private, password-locked love note.
+
+**Password:** `rumaysa`
+
+Deployed on Vercel.

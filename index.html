@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Rumaysa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1a0a0f 0%, #2d1b2e 40%, #1a0a14 100%);
+      color: #f5e6e8;
+      font-family: 'Cormorant Garamond', serif;
+      overflow-x: hidden;
+    }
+    .stars {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(1px 1px at 20px 30px, #fff8, transparent),
+        radial-gradient(1px 1px at 40px 70px, #fff6, transparent),
+        radial-gradient(1.5px 1.5px at 50px 160px, #fff9, transparent),
+        radial-gradient(1px 1px at 90px 40px, #fff5, transparent),
+        radial-gradient(1px 1px at 130px 80px, #fff7, transparent),
+        radial-gradient(1.5px 1.5px at 160px 120px, #fffc, transparent);
+      background-size: 200px 200px;
+      animation: twinkle 8s ease-in-out infinite alternate;
+    }
+    @keyframes twinkle { from { opacity: 0.6; } to { opacity: 1; } }
+    #gate {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    .gate-card {
+      background: rgba(40, 20, 30, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 182, 193, 0.25);
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+    .heart {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+    }
+    .gate-card h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: 1.85rem;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.5rem;
+      color: #ffd6e0;
+    }
+    .gate-card p {
+      font-size: 1.15rem;
+      opacity: 0.85;
+      margin-bottom: 1.75rem;
+      line-height: 1.5;
+    }
+    #password {
+      width: 100%;
+      padding: 0.9rem 1.1rem;
+      border: 1px solid rgba(255, 182, 193, 0.35);
+      border-radius: 12px;
+      background: rgba(20, 10, 15, 0.6);
+      color: #ffeef2;
+      font-family: inherit;
+      font-size: 1.15rem;
+      text-align: center;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    #password:focus {
+      border-color: #ff9aab;
+      box-shadow: 0 0 0 3px rgba(255, 154, 171, 0.2);
+    }
+    #password::placeholder { color: rgba(255, 214, 224, 0.45); }
+    button {
+      margin-top: 1.25rem;
+      width: 100%;
+      padding: 0.95rem;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #e85a7a, #c43d5c);
+      color: white;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 8px 20px rgba(196, 61, 92, 0.35);
+    }
+    button:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(196, 61, 92, 0.45); }
+    button:active { transform: translateY(0); }
+    .error {
+      margin-top: 1rem;
+      color: #ff8a9a;
+      font-size: 1rem;
+      min-height: 1.4em;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .error.show { opacity: 1; }
+    #letter {
+      display: none;
+      min-height: 100vh;
+      padding: 3rem 1.5rem 5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .letter-wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      background: rgba(35, 18, 28, 0.8);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 182, 193, 0.2);
+      border-radius: 20px;
+      padding: 3rem 2.25rem;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+    }
+    .letter-wrap h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.1rem;
+      text-align: center;
+      color: #ffd6e0;
+      margin-bottom: 0.35rem;
+    }
+    .subtitle {
+      text-align: center;
+      font-style: italic;
+      opacity: 0.75;
+      margin-bottom: 2.5rem;
+      font-size: 1.15rem;
+    }
+    .letter-body {
+      font-size: 1.25rem;
+      line-height: 1.85;
+      color: #f8ecef;
+    }
+    .letter-body p {
+      margin-bottom: 1.4rem;
+    }
+    .letter-body .signature {
+      margin-top: 2.5rem;
+      text-align: right;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: #ffb6c1;
+    }
+    .footer-hearts {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 1.5rem;
+      letter-spacing: 0.4em;
+      opacity: 0.7;
+    }
+    @media (max-width: 520px) {
+      .gate-card { padding: 2.25rem 1.5rem; }
+      .letter-wrap { padding: 2rem 1.35rem; }
+      .letter-body { font-size: 1.15rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+
+  <div id="gate">
+    <div class="gate-card">
+      <div class="heart">♥</div>
+      <h1>For Rumaysa</h1>
+      <p>Something special is waiting for you.<br>Enter the password to open it.</p>
+      <input type="password" id="password" placeholder="Enter password" autocomplete="off" autofocus>
+      <button type="button" onclick="unlock()">Open</button>
+      <div class="error" id="error">Wrong password — try again, my love</div>
+    </div>
+  </div>
+
+  <div id="letter">
+    <div class="letter-wrap">
+      <h1>My Dearest Rumaysa</h1>
+      <p class="subtitle">A letter written just for you</p>
+      <div class="letter-body">
+        <p>Rumaysa,</p>
+        <p>I have sat down to write this more times than I can count. Each time the words felt too small for everything you mean to me. So tonight I am writing it all — the long version, the true version, the one that has been living quietly in my chest every single day.</p>
+        <p>I love you. Not in the casual way people say it when they are happy or when the moment feels right. I love you in the deep, steady way that settles into the bones. I love the sound of your name. I love the way the world softens when you are near. I love the quiet between us as much as the laughter. I love the way you see things, the way you care, the way you simply exist and somehow make ordinary hours feel like something worth remembering.</p>
+        <p>There are days when the thought of you is the first thing that greets me and the last thing that stays with me. On those days I catch myself smiling at nothing, only to realize it is because something small reminded me of you — a song, a color, a sentence I wish I could say out loud to you right then. You have become the place my mind returns to when it wants to rest.</p>
+        <p>I love how you make me want to be better without ever demanding it. I love the safety I feel when I am honest with you. I love that I can be quiet with you and it never feels empty. I love the future that starts forming in my head the moment I think of your face — not a grand, impossible future, just a gentle one filled with ordinary mornings, shared meals, long conversations, and the kind of peace that only comes from knowing someone truly sees you.</p>
+        <p>If I could take every soft feeling I have ever had and gather them into one place, they would still fall short of what you are to me. You are the reason some days feel lighter. You are the reason I believe in slow, careful love. You are the person I want to keep choosing, again and again, for as many years as we are given.</p>
+        <p>I know life is not always gentle. There will be hard days and quiet days and days when we both feel tired. But even on those days, I want you to know this: my love for you is not fragile. It does not depend on perfect weather or perfect moods. It is patient. It is steady. It is yours.</p>
+        <p>So this is my long note, Rumaysa. It is not enough, and it will never be enough, but it is true. I love you with the kind of love that grows quieter and deeper with time. I love you in the morning light and in the late hours. I love you in the small things and in the big ones. I love you simply because you are you — and that has always been more than enough.</p>
+        <p>Thank you for existing. Thank you for letting me love you. Thank you for being the person my heart keeps writing home to.</p>
+        <p class="signature">Always yours,<br>with all my heart</p>
+      </div>
+      <div class="footer-hearts">♥ · ♥ · ♥</div>
+    </div>
+  </div>
+
+  <script>
+    const PASSWORD = 'rumaysa';
+    const gate = document.getElementById('gate');
+    const letter = document.getElementById('letter');
+    const input = document.getElementById('password');
+    const error = document.getElementById('error');
+
+    function unlock() {
+      const val = input.value.trim().toLowerCase();
+      if (val === PASSWORD) {
+        gate.style.display = 'none';
+        letter.style.display = 'block';
+        window.scrollTo(0, 0);
+      } else {
+        error.classList.add('show');
+        input.value = '';
+        input.focus();
+        setTimeout(() => error.classList.remove('show'), 2500);
+      }
+    }
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') unlock();
+    });
+  </script>
+</body>
+</html>
